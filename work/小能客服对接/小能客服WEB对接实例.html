@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>test</title>
+    <script src="http://misc.zhongniang.com/js/jquery.min.js?version=20160120" type="text/javascript"></script>
+</head>
+
+<body>
+    <button type="button" onclick="openChart('jt_1000_9999');">点我咨询</button>
+    
+    <button type="button" onclick="openChart('jt_1000_1489043133777');">点我咨询2</button>
+    
+    <script type="text/javascript">
+        function openChart(){
+            NTKF.im_openInPageChat();
+            //$(".chat-header-body").css("background","#d61939");
+        }
+        //http://m.jiuxian.com/m_v1/xiaoneng/goodsInfo?itemid={$itemid}&itemparam={$itemparam}
+        //提供接口方式查看商品详情(不起作用)
+        /*var NTKF_PARAM = {
+            "siteid": "jx_1000",
+            "settingid": "jx_1000_9999",
+            "uid": "vip5",
+            "uname": "会员5",
+            "userlevel": "0",
+            "itemid":"9",
+	        "itemparam":"580"
+        }*/
+
+        //提供参数方式查看商品详情
+        var NTKF_PARAM = {
+            "siteid": "jt_1000",
+            "settingid": "jt_1000_9999",
+            "uid": "vip6",
+            "uname": "会员6",
+            "userlevel": "0",
+	        "itemparam":"goods",
+            "ntalkerparam": {
+                "item": {
+                    id: "8"
+                }
+            }
+        }
+
+        //提供参数方式查看订单详情
+        /*var NTKF_PARAM = {
+            "siteid": "jt_1000",
+            "settingid": "jt_1000_9999",
+            "uid": "vip6",
+            "uname": "会员6",
+            "userlevel": "0",
+	        "itemparam":"order",
+            "ntalkerparam": {
+                "item": {
+                    id: "201705035588955456455488"
+                }
+            }
+        }*/
+
+        //提供参数方式查看商品详情(文档要求，其实只传id就可以)
+        /*var NTKF_PARAM = {
+            "siteid": "jx_1000",
+            "settingid": "jx_1000_9999",
+            "uid": "vip7",
+            "uname": "会员7",
+            "userlevel": "0",
+            "ntalkerparam": {
+                "item": {
+                    id: "8",
+                    name: "52°泸州老窖红喜庆500ml（双瓶装）",
+                    url: "http://www.jiuxian.com/goods-15666.html?src=3889&source=72",
+                    imageurl: "http://img10.jximage.com/2015/0814/3e8b0c4f03e44510b77ae6ae05407b5c1.jpg",
+                    currency: "￥",
+                    siteprice: "229.00",
+                    marketprice: "229.00",
+                    category: "白酒",
+                    brand: "泸州老窖浓香"
+                }
+            }
+        }*/
+
+        //提供参数方式查看订单详情(不起作用)
+        /*var NTKF_PARAM = {
+            "siteid": "jx_1000",
+            "settingid": "jx_1000_9999",
+            "uid": "vip8",
+            "uname": "会员8",
+            "userlevel": "0",
+            "orderid": "201210232322",
+            "orderprice": "168.00"
+        }*/
+
+        //提供参数方式查看订单详情(不起作用)
+        /*var NTKF_PARAM = {
+            "siteid": "jx_1000",
+            "settingid": "jx_1000_9999",
+            "uid": "vip9",
+            "uname": "会员9",
+            "userlevel": "0",
+            "ntalkerparam": {
+                "items": [{ id: 8, count: 2 }, { id: 9, count: 5 }]
+            }
+        }*/
+
+        //提供参数方式查看订单详情(不起作用)
+        /*var NTKF_PARAM = {
+            "siteid": "jx_1000",
+            "settingid": "jx_1000_9999",
+            "uid": "vip9",
+            "uname": "会员9",
+            "userlevel": "0",
+            "ntalkerparam": {
+                "items": [{
+                    id: "8",
+                    name: "52°泸州老窖红喜庆500ml（双瓶装）",
+                    url: "http://www.jiuxian.com/goods-15666.html?src=3889&source=72",
+                    imageurl: "http://img10.jximage.com/2015/0814/3e8b0c4f03e44510b77ae6ae05407b5c1.jpg",
+                    currency: "￥",
+                    siteprice: "229.00",
+                    marketprice: "229.00",
+                    category: "白酒",
+                    brand: "泸州老窖浓香"
+                }, {
+                    id: "9",
+                    name: "52°泸州老窖红喜庆500ml（双瓶装）",
+                    url: "http://www.jiuxian.com/goods-15666.html?src=3889&source=72",
+                    imageurl: "http://img10.jximage.com/2015/0814/3e8b0c4f03e44510b77ae6ae05407b5c1.jpg",
+                    currency: "￥",
+                    siteprice: "229.00",
+                    marketprice: "229.00",
+                    category: "白酒",
+                    brand: "泸州老窖浓香"
+                }]
+            }
+        }*/
+    </script>
+    <script type="text/javascript" src="http://dljx.jxwmanage.com/js/b2b/ntkfstat.js?siteid=jt_1000" charset="utf-8"></script>
+</body>
+
+</html>
