@@ -51,8 +51,8 @@ public class HttpUtil {
 			conn = (HttpURLConnection) uUrl.openConnection();
 			conn.setRequestProperty("content-type", "application/x-www-form-urlencoded");
 			conn.setRequestMethod(method.toString());
-			// conn.setDoOutput(true);
-			// conn.setDoInput(true);
+			conn.setDoOutput(true);
+			conn.setDoInput(true);
 			conn.setConnectTimeout(connectTimeout);
 			conn.setReadTimeout(readTimeout);
 
