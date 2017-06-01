@@ -1,15 +1,5 @@
 USE zntg_jxweb;
 
-#1.审核通过的全部商家初始化商家默认扣点均为3%加盟商为0%。系统默认值。无其他扣点规则。
-INSERT INTO shop_rate_set
-  (shop_id,merchant_id,rule_type,rate,effective_rate,start_time,end_time,status,creator,create_time)
-  SELECT s.ID,m.ID,1,IF(m.type = 1,0,0.03),IF(m.type = 1,0,0.03),NOW(),'3000-12-31 00:00:00',1,0,NOW()
-    FROM tg_Merchant m
-    LEFT JOIN tg_Shop s
-      ON m.ID = s.tg_MerchantID
-   WHERE m.State = 1
-     AND s.State = 1;
-
 #2.店铺扣点相关表
 
 CREATE TABLE `shop_rate_set` (
@@ -33,6 +23,16 @@ CREATE TABLE `shop_rate_set` (
   PRIMARY KEY (`id`),
   KEY `idx_shop_id` (`shop_id`) USING BTREE
 ) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8 COMMENT='店铺扣点设置表';
+
+#1.审核通过的全部商家初始化商家默认扣点均为3%加盟商为0%。系统默认值。无其他扣点规则。
+INSERT INTO shop_rate_set
+  (shop_id,merchant_id,rule_type,rate,effective_rate,start_time,end_time,status,creator,create_time)
+  SELECT s.ID,m.ID,1,IF(m.type = 1,0,0.03),IF(m.type = 1,0,0.03),NOW(),'3000-12-31 00:00:00',1,0,NOW()
+    FROM tg_Merchant m
+    LEFT JOIN tg_Shop s
+      ON m.ID = s.tg_MerchantID
+   WHERE m.State = 1
+     AND s.State = 1;
 
 CREATE TABLE `shop_rate_log` (
   `id` int(11) NOT NULL AUTO_INCREMENT COMMENT '主键id',
