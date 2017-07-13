@@ -66,6 +66,7 @@ public class StringTest {
 		 * 情景二：关于new String("")
 		 * 
 		 */
+		String s31 = "abc";
 		String s3 = new String("abc");
 		// ↑ 创建了两个对象，一个存放在字符串池中，一个存在与堆区中；
 		// ↑ 还有一个对象引用s3存放在栈中
@@ -79,6 +80,8 @@ public class StringTest {
 		// ↑false 存放的地区多不同，一个栈区，一个堆区
 		System.out.println("s1.equals(s3) : " + (s1.equals(s3)));
 		// ↑true 值相同
+		System.out.println("s3 == s31 : " + (s3 == s31));
+		// ↑false s31对象在PermGen space中，s3对象在Heap space中，二者不是一个对象
 		// ↑------------------------------------------------------over
 
 		/**
@@ -197,8 +200,9 @@ public class StringTest {
 	}
 
 	public static void internTestJDK8WithPredefinedString() {
-		//因为常量池所在的PermGen space与Heap space是隔离的，JDK7前 intern会将首次出现的字符串对象完全拷贝到常量池中。
-		//而JDK7后常量池搬到了Heap space，为了节省空间，intern会将首次出现的字符串对象的引用拷贝到常量池中。
+		// 因为常量池所在的PermGen space与Heap space是隔离的，JDK7前
+		// intern会将首次出现的字符串对象完全拷贝到常量池中。
+		// 而JDK7后常量池搬到了Heap space，为了节省空间，intern会将首次出现的字符串对象的引用拷贝到常量池中。
 		String str2 = "cd";
 
 		String str1 = new String("c") + new String("d");
@@ -211,12 +215,12 @@ public class StringTest {
 	public static void internTestJDK8WithManyString() {
 		String str1 = new String("e") + new String("f");
 		String str2 = null;
-		
+
 		// heap space中存在大量字符串时，会导致intern失效
 		noInternTestNoRepeat();
-		
+
 		str2 = str1.intern();
-		
+
 		System.out.println(str2 == str1);
 		System.out.println(str1 == "ef");
 		System.gc();
@@ -233,7 +237,7 @@ public class StringTest {
 		// internTestNoRepeat();
 		// noInternTestNoRepeat();
 
-		internTestJDK8();
+		// internTestJDK8();
 
 		internTestJDK8WithPredefinedString();
 
