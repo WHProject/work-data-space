@@ -250,9 +250,7 @@ public class StringTest {
 		noInternTestNoRepeat();
 
 		internTestJDK8();
-
 		internTestJDK8WithPredefinedString();
-
 		internTestJDK8WithManyString();
 	}
 
