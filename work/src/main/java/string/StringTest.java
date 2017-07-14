@@ -193,22 +193,29 @@ public class StringTest {
 	}
 
 	public static void internTestJDK8() {
+		// 因为常量池所在的PermGen space与Heap space是隔离的，JDK7前
+		// intern会将首次出现的字符串对象完全拷贝到常量池所在的Perm Gen space中。
+		// 而JDK7后常量池搬到了Heap space，为了节省空间，intern会将首次出现的字符串对象的引用拷贝到常量池中。
 		String str1 = new String("a") + new String("b");
 		System.out.println(str1.intern() == str1);
+		// ↑JDK6 false JDK8 true
 		System.out.println(str1 == "ab");
+		// ↑JDK6 false JDK8 true
 		System.gc();
 	}
 
 	public static void internTestJDK8WithPredefinedString() {
 		// 因为常量池所在的PermGen space与Heap space是隔离的，JDK7前
-		// intern会将首次出现的字符串对象完全拷贝到常量池中。
+		// intern会将首次出现的字符串对象完全拷贝到常量池所在的Perm Gen space中。
 		// 而JDK7后常量池搬到了Heap space，为了节省空间，intern会将首次出现的字符串对象的引用拷贝到常量池中。
 		String str2 = "cd";
 
 		String str1 = new String("c") + new String("d");
-		// str1.intern()的地址为str2对象的地址，str1为在heap space上新创建的字符串对象，二者不是一个对象
 		System.out.println(str1.intern() == str1);
+		// ↑JDK6 false JDK8 false str1.intern()的地址为str2对象的地址，str1为在heap
+		// space上新创建的字符串对象，二者不是一个对象
 		System.out.println(str1 == "cd");
+		// ↑JDK6 false JDK8 false str1为在heap space上新创建的字符串对象，"cd"为str2对象的地址
 		System.gc();
 	}
 
@@ -216,28 +223,33 @@ public class StringTest {
 		String str1 = new String("e") + new String("f");
 		String str2 = null;
 
-		// heap space中存在大量字符串时，会导致intern失效
+		// heap space中存在大量字符串时，会导致intern失效，此情况应该与以下案例fastjson
+		// BUG问题类似，常量池中字符串过多，超过一定限制，就不会再往常量池中放了。
 		noInternTestNoRepeat();
 
 		str2 = str1.intern();
 
 		System.out.println(str2 == str1);
+		// ↑JDK6 false JDK8 false str1为在heap
+		// space上新创建的字符串对象，str2与str1对象所在位置不一致，所以不相等。
 		System.out.println(str1 == "ef");
+		// ↑JDK6 false JDK8 false str1为在heap
+		// space上新创建的字符串对象，"ef"与str1对象所在位置不一致，所以不相等。
 		System.gc();
 	}
 
 	public static void main(String[] args) throws InterruptedException {
-		// performanceTest();
+		performanceTest();
 
-		// stringStorageTest();
+		stringStorageTest();
 
-		// internTest();
-		// noInternTest();
+		internTest();
+		noInternTest();
 
-		// internTestNoRepeat();
-		// noInternTestNoRepeat();
+		internTestNoRepeat();
+		noInternTestNoRepeat();
 
-		// internTestJDK8();
+		internTestJDK8();
 
 		internTestJDK8WithPredefinedString();
 
