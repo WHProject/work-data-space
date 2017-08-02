@@ -7,6 +7,7 @@ import java.io.InputStreamReader;
 import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
+import java.util.HashMap;
 import java.util.Map;
 import java.util.Set;
 
@@ -180,7 +181,9 @@ public class HttpUtil {
 	}
 
 	public static void main(String[] args) {
-		String content = get("http://web.sqt.gtimg.cn/q=sz000651?r=0.6450336522583517",null, 5000, 5000,"GBK");
+		Map<String,String> map=new HashMap<String,String>();
+		map.put("access-token", "1D3CB2514442A96015BCB70E475109AA");
+		String content = get("http://api.ntalker.com/SellerClassify/SellerClassify/siteid/jt_1000",null,map, 5000, 5000,"UTF-8");
 		System.out.println(content);
 	}
 
