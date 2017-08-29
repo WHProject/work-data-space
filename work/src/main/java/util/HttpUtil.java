@@ -8,10 +8,13 @@ import java.io.OutputStreamWriter;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
 import org.apache.log4j.Logger;
+
+import com.google.gson.reflect.TypeToken;
 
 public class HttpUtil {
 
@@ -181,10 +184,31 @@ public class HttpUtil {
 	}
 
 	public static void main(String[] args) {
-		Map<String,String> map=new HashMap<String,String>();
-		map.put("access-token", "1D3CB2514442A96015BCB70E475109AA");
-		String content = get("http://api.ntalker.com/SellerClassify/SellerClassify/siteid/jt_1000",null,map, 5000, 5000,"UTF-8");
-		System.out.println(content);
+		String getAccessTokenUrl = "http://apijx.jxwmanage.com/OauthCredentials/oauth/client_id/8bb83014/client_secret/71710280d7/code/308e1360f4af23add16b6b1399017945/grant_type/code";
+		String accessTokenData = get(getAccessTokenUrl, null, 5000, 5000, "UTF-8");
+		System.out.println(accessTokenData);
+		Map<String, Map<String, String>> accessToken = GsonUtil.getEntityFromJson(accessTokenData, new TypeToken<Map<String, Map<String, String>>>() {
+		});
+		Map<String, String> accessTokenHeader = new HashMap<String, String>();
+		accessTokenHeader.put("access-token", accessToken.get("OauthInfo").get("access_token"));
+
+		String getSellerClassifyUrl = "http://apijx.jxwmanage.com/SellerClassify/SellerClassify?siteid=jt_1000";
+		String sellerClassify = get(getSellerClassifyUrl, null, accessTokenHeader, 5000, 5000, "UTF-8");
+		System.out.println(sellerClassify);
+		List<Map<String, String>> sellerClassifyList = GsonUtil.getEntityFromJson(sellerClassify,
+				new TypeToken<List<Map<String, String>>>() {
+				});
+		
+		String addSellerUrl = "http://apijx.jxwmanage.com/Sellers/Sellers?siteid=jt_1000";
+		Map<String, String> seller = new HashMap<String, String>();
+		seller.put("seller_id", "8888");
+		seller.put("classify_id", sellerClassifyList.get(0).get("id"));
+		seller.put("name", "创建商户测试");
+		seller.put("administrator", "jt_8888");
+		seller.put("password", "jt123456");
+		seller.put("level", "1");
+		//String addSellerResult = post(addSellerUrl, seller, accessTokenHeader, 5000, 5000, "UTF-8");
+		//System.out.println(addSellerResult);
 	}
 
 }

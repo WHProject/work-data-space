@@ -2,6 +2,8 @@ package util;
 
 import org.apache.log4j.Logger;
 
+import com.google.common.base.MoreObjects;
+
 public class StringUtil {
 
 	private static Logger LOGGER = Logger.getLogger(StringUtil.class);
@@ -35,6 +37,12 @@ public class StringUtil {
 			return true;
 		}
 		return false;
+	}
+
+	public static void main(String[] args) {
+		String o = null;
+		String s = MoreObjects.<String>firstNonNull(o,"ddd");
+		System.out.println(s);
 	}
 
 }
