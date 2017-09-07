@@ -28,8 +28,15 @@ public class Testing {
 			executorService.execute(new Runnable() {
 				@Override
 				public void run() {
-					String content = HttpUtil.post(url, params, headers, 10000, 10000, "UTF-8");
-					System.out.println(content);
+					String content;
+					try {
+						content = HttpUtil.post(url, params, headers);
+						System.out.println(content);
+					} catch (Exception e) {
+						// TODO Auto-generated catch block
+						e.printStackTrace();
+					}
+
 				}
 			});
 		}
