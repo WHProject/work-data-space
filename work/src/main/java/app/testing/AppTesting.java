@@ -12,6 +12,7 @@ import org.apache.log4j.Logger;
 import com.google.common.collect.Maps;
 import com.google.gson.reflect.TypeToken;
 
+import util.FileUtil;
 import util.GsonUtil;
 import util.HttpUtil;
 import util.LoginDesUtils;
@@ -19,37 +20,46 @@ import util.MD5Util;
 
 public class AppTesting {
 	private static Logger LOGGER = Logger.getLogger(AppTesting.class);
-	private static final String HOST = "http://127.0.0.1:8090/***************";
+	private static final String HOST = "http://127.0.0.1:8090/**********";
 	private static final String API_APP_SECURITYKEY = "***************";
 	private static final String USER_LOGIN_RSA_KEY = "***************";
 	private static final LoginDesUtils DES_UTIL = new LoginDesUtils(USER_LOGIN_RSA_KEY);
 
-	private static final String USERNAME = "***************";
-	private static final String PASSWORD = "***************";
+	private static final String USERNAME = "*";
+	private static final String PASSWORD = "*";
 
 	private static SessionInfo sessionInfo = null;
 
 	public static void main(String[] args) throws Exception {
-		if (login(USERNAME, PASSWORD)) {
-			String url = "/usercenter/getUserInfo.htm";
-			String result = testAPI(url, null, Method.POST);
-			LOGGER.info(url + " response:" + result);
-		}
+		String url = "/usercenter/my_rebate.htm";
+
+		Map<String, String> params = Maps.newHashMap();
+		params.put("pageNum", "1");
+		params.put("pageSize", "5");
+		params.put("status", "0");
+
+		testAPI(url, params, Method.POST);
 	}
 
 	public static String testAPI(String url, Map<String, String> requestParams, Method method) throws Exception {
-		Map<String, String> params = Maps.newHashMap();
-		params.put("json", "");
-		if (requestParams != null) {
-			params.putAll(requestParams);
+		String result = null;
+		if (login(USERNAME, PASSWORD)) {
+			Map<String, String> params = Maps.newHashMap();
+			params.put("json", "");
+			if (requestParams != null) {
+				params.putAll(requestParams);
+			}
+			params.put("PTOKEN_ZNTG", sessionInfo.data.PTOKEN_ZNTG);
+			params.put("sign", getSign(params));
+			if (method == Method.POST) {
+				result = HttpUtil.post(HOST + url, params, null);
+			} else {
+				result = HttpUtil.get(HOST + url, params, null);
+			}
+			LOGGER.info(url + " response:" + result);
+			FileUtil.writeFileContent(result, "src/main/java/app/testing/AppTesting.json");
 		}
-		params.put("PTOKEN_ZNTG", sessionInfo.data.PTOKEN_ZNTG);
-		params.put("sign", getSign(params));
-		if (method == Method.POST) {
-			return HttpUtil.post(HOST + url, params, null);
-		} else {
-			return HttpUtil.get(HOST + url, params, null);
-		}
+		return result;
 	}
 
 	private static boolean login(String username, String password) {
@@ -102,7 +112,9 @@ public class AppTesting {
 		}
 
 		String requestParamsSign = MD5Util.getMD5String(API_APP_SECURITYKEY + MD5Util.getMD5String(str));
-		LOGGER.info("参数签名:" + requestParamsSign);
+		if (LOGGER.isDebugEnabled()) {
+			LOGGER.info("参数签名:" + requestParamsSign);
+		}
 		return requestParamsSign;
 	}
 
