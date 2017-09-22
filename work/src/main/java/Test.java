@@ -1,13 +1,11 @@
-import java.util.Map;
-import java.util.TreeMap;
+import java.util.Calendar;
+import java.util.Date;
 
 public class Test {
 	public static void main(String[] args) {
-		Map<NoComparable,String> treeMap=new TreeMap<NoComparable,String>();
-		treeMap.put(new NoComparable(), "NoComparable");
-		System.out.println(treeMap);
-	}
-	
-	public static class NoComparable{
+		Calendar c = Calendar.getInstance();
+        c.setTime(new Date());
+        c.add(1, 10);
+        System.out.println(c.getTime());  
 	}
 }

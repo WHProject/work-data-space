@@ -19,27 +19,26 @@ import util.LoginDesUtils;
 import util.MD5Util;
 
 public class AppTesting {
-	private static Logger LOGGER = Logger.getLogger(AppTesting.class);
-	private static final String HOST = "http://127.0.0.1:8090/**********";
-	private static final String API_APP_SECURITYKEY = "***************";
-	private static final String USER_LOGIN_RSA_KEY = "***************";
-	private static final LoginDesUtils DES_UTIL = new LoginDesUtils(USER_LOGIN_RSA_KEY);
-
-	private static final String USERNAME = "*";
-	private static final String PASSWORD = "*";
-
-	private static SessionInfo sessionInfo = null;
 
 	public static void main(String[] args) throws Exception {
-		String url = "/usercenter/my_rebate.htm";
+		String url = "/draw/exchangeIntegral.htm";
 
 		Map<String, String> params = Maps.newHashMap();
-		params.put("pageNum", "1");
-		params.put("pageSize", "5");
-		params.put("status", "0");
+		params.put("id", "405");
 
 		testAPI(url, params, Method.POST);
 	}
+	
+	private static Logger LOGGER = Logger.getLogger(AppTesting.class);
+	private static final String HOST = "http://127.0.0.1:8090/ZNTG-APP";
+	private static final String API_APP_SECURITYKEY = "345ccf1d2f23ad6b6a5bac3771564app";
+	private static final String USER_LOGIN_RSA_KEY = "com.jiuxian.tuan";
+	private static final LoginDesUtils DES_UTIL = new LoginDesUtils(USER_LOGIN_RSA_KEY);
+
+	private static final String USERNAME = "yushaohua";
+	private static final String PASSWORD = "ysh123456";
+
+	private static SessionInfo sessionInfo = null;
 
 	public static String testAPI(String url, Map<String, String> requestParams, Method method) throws Exception {
 		String result = null;

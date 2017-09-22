@@ -10,6 +10,7 @@ import java.net.URLEncoder;
 import java.security.cert.CertificateException;
 import java.security.cert.X509Certificate;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Map.Entry;
 
@@ -20,6 +21,8 @@ import javax.net.ssl.SSLSession;
 import javax.net.ssl.SSLSocketFactory;
 import javax.net.ssl.TrustManager;
 import javax.net.ssl.X509TrustManager;
+
+import com.google.gson.reflect.TypeToken;
 
 /**
  * http、https 请求工具类， 微信为https的请求
@@ -252,26 +255,53 @@ public class HttpUtil {
 			return true;// 直接返回true
 		}
 	}
+	
+	private static final String SITE_ID = "jt_1000";
+	private static final String SELLER_PASSWORD = "jt123456";
+	private static final String SELLER_LEVEL = "1";
+	private static final String GET_ACCESSTOKEN_URL = "http://58.83.215.29/OauthCredentials/oauth/client_id/8bb83014/client_secret/71710280d7/code/308e1360f4af23add16b6b1399017945/grant_type/code";
+	private static final String GET_SELLERCLASSIFY_URL = "http://58.83.215.29/SellerClassify/SellerClassify?siteid="
+			+ SITE_ID;
+	private static final String ADD_SELLER_URL = "http://58.83.215.29/Sellers/Sellers?siteid="+ SITE_ID;
+
+	private static boolean synchronizeXiaoneng() {
+		try {
+
+			String accessTokenData = get(GET_ACCESSTOKEN_URL);
+
+			Map<String, Map<String, String>> accessToken = GsonUtil.getEntityFromJson(accessTokenData, new TypeToken<Map<String, Map<String, String>>>() {
+			});
+			Map<String, String> accessTokenHeader = new HashMap<String, String>();
+			accessTokenHeader.put("access-token", accessToken.get("OauthInfo").get("access_token"));
+
+			Map<String, String> params = new HashMap<String, String>();
+			
+			String sellerClassifyData = get(GET_SELLERCLASSIFY_URL,params, accessTokenHeader);
+			List<Map<String, String>> sellerClassifyList = GsonUtil.getEntityFromJson(sellerClassifyData,
+					new TypeToken<List<Map<String, String>>>() {
+					});
+
+			Map<String, String> seller = new HashMap<String, String>();
+			seller.put("seller_id", "jt_121");
+			seller.put("classify_id", sellerClassifyList.get(0).get("id"));
+			seller.put("name", "测试");
+			seller.put("administrator", "admin");
+			seller.put("password", SELLER_PASSWORD);
+			seller.put("level", SELLER_LEVEL);
+			String addSellerData = post(ADD_SELLER_URL, seller, accessTokenHeader);
+			Map<String, String> addSeller = GsonUtil.getEntityFromJson(addSellerData,
+					new TypeToken<Map<String, String>>() {
+					});
+
+			String settingId = addSeller.get("setting_id");
+			System.out.println(settingId);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return false;
+	}
 
 	public static void main(String[] args) throws Exception {
-		Map<String, String> headers = new HashMap<String, String>();
-		/*
-		 * headers.put("Content-Type", "application/x-www-form-urlencoded");
-		 * headers.put("Content-Length", "223"); headers.put("Host",
-		 * "app-test.zhongniang.com"); headers.put("Connection", "Keep-Alive");
-		 * headers.put("Accept-Encoding", "gzip"); headers.put("User-Agent",
-		 * "okhttp/3.9.0");
-		 */
-
-		Map<String, String> params = new HashMap<String, String>();
-		params.put("producer_ model", "vivo X5Max+");
-		params.put("pwd", "2a6cb500f435ddc90e8acc09db52b182");
-		params.put("uname", "44952b1c11092ab8716dd1b8ee93a112");
-		params.put("producer", "vivo");
-		params.put("android_system_version", "4.4.4");
-		params.put("version", "3.2.0");
-		params.put("sign", "f2bf06244850a64375cd5b0fb2ba4330");
-		String content = HttpUtil.post("http://127.0.0.1:8090/ZNTG-APP/login_v3.htm", params, headers);
-		System.out.println(content);
+		synchronizeXiaoneng();
 	}
 }
