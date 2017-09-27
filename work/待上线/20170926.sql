@@ -7,7 +7,7 @@ USE zntg_jxweb;
 
 #1.新增代理商品模版字段
 ALTER TABLE `agent_product`
-ADD COLUMN `agent_price`  decimal(10,2) DEFAULT NULL COMMENT '代理价' AFTER `tg_price`,
+ADD COLUMN `agent_price`  decimal(10,2) DEFAULT NULL COMMENT '代理价' AFTER `modify_time`,
 ADD COLUMN `kpi_q1`  decimal(10,6) DEFAULT NULL COMMENT '第一考核期考核指标（万元）' AFTER `agent_price`,
 ADD COLUMN `kpi_q2`  decimal(10,6) DEFAULT NULL COMMENT '第二考核期考核指标（万元）' AFTER `kpi_q1`,
 ADD COLUMN `kpi_q3`  decimal(10,6) DEFAULT NULL COMMENT '第三考核期考核指标（万元）' AFTER `kpi_q2`,
