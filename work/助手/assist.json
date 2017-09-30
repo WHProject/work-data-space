@@ -28,9 +28,49 @@
             "url":"http://zn.gitlab.9ijx.com/"
         },
         {
-            "title":"RabbitMQ",
+            "title":"RabbitMQ[开发]",
             "icon":"rabbitmq.png",
             "url":"http://192.168.5.40:15672/"
+        },
+        {
+            "title":"RabbitMQ[测试]",
+            "icon":"rabbitmq.png",
+            "url":"http://192.168.5.40:15672/"
+        },
+        {
+            "title":"RabbitMQ[线上]",
+            "icon":"rabbitmq.png",
+            "url":"http://192.168.19.158:15672/"
+        },
+        {
+            "title":"Dubbo[开发]",
+            "icon":"dubbo.png",
+            "url":"http://192.168.5.99:8080/dubbo-viewer/index.htm"
+        },
+        {
+            "title":"Dubbo[测试]",
+            "icon":"dubbo.png",
+            "url":"http://192.168.5.113:8080/dubbo-viewer/index.htm"
+        },
+        {
+            "title":"Dubbo[线上]",
+            "icon":"dubbo.png",
+            "url":"http://192.168.19.249:8020/dubbo-viewer/index.htm"
+        },
+        {
+            "title":"配置中心[开发]",
+            "icon":"configtoolkit.png",
+            "url":"http://192.168.5.99:8080/config-web/"
+        },
+        {
+            "title":"配置中心[测试]",
+            "icon":"configtoolkit.png",
+            "url":"http://192.168.5.113:8080/config-web/"
+        },
+        {
+            "title":"配置中心[线上]",
+            "icon":"configtoolkit.png",
+            "url":"http://192.168.19.249:8010/config-web/"
         },
         {
             "title":"Github",
@@ -50,7 +90,7 @@
             "url":"http://runjs.cn/code"
         },
         {
-            "title":"JSON",
+            "title":"JSON编辑器",
             "icon":"",
             "icon-text":"JSON",
             "url":"http://runjs.cn/code"
