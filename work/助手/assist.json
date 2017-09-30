@@ -1,72 +1,83 @@
 {
-  "work": [
-    {
-      "title": "邮箱", 
-      "icon": "mail.png", 
-      "url": "https://mail.jiuxian.com"
-    }, 
-    {
-      "title": "OA", 
-      "icon": "oa.png", 
-      "url": "http://oa.jxwmanage.com/login/Login.jsp"
-    }
-  ], 
-  "back": [
-    {
-      "title": "禅道", 
-      "icon": "zdao.png", 
-      "url": "http://192.168.5.99/zentao/my/"
-    }, 
-    {
-      "title": "Nexus", 
-      "icon": "nexus.png", 
-      "url": "http://192.168.10.220:28080/nexus/index.html#welcome"
-    }, 
-    {
-      "title": "Gitlab", 
-      "icon": "gitlab.png", 
-      "url": "http://zn.gitlab.9ijx.com/"
-    }, 
-    {
-      "title": "RabbitMQ", 
-      "icon": "rabbitmq.png", 
-      "url": "http://192.168.5.40:15672/"
-    }, 
-    {
-      "title": "Github", 
-      "icon": "github.png", 
-      "url": "https://github.com/"
-    }, 
-    {
-      "title": "Maven", 
-      "icon": "maven.png", 
-      "url": "http://mvnrepository.com/tags/maven"
-    }
-  ], 
-  "front": [
-    {
-      "title": "runjs", 
-      "icon": "runjs.png", 
-      "url": "http://runjs.cn/code"
-    }
-  ], 
-  "technology": [
-    {
-      "title": "InfoQ", 
-      "icon": "infoq.png", 
-      "url": "http://www.infoq.com/cn/"
-    }, 
-    {
-      "title": "CSDN", 
-      "icon": "csdn.png", 
-      "url": "http://www.csdn.net/"
-    }
-  ], 
-  "other": [
-    {
-      "title": "UML作图", 
-      "icon": "uml.png", 
-      "url": "https://www.processon.com/"
-    }
-  ]
+    "work":[
+        {
+            "title":"邮箱",
+            "icon":"mail.png",
+            "url":"https://mail.jiuxian.com"
+        },
+        {
+            "title":"OA",
+            "icon":"oa.png",
+            "url":"http://oa.jxwmanage.com/login/Login.jsp"
+        }
+    ],
+    "back":[
+        {
+            "title":"禅道",
+            "icon":"zdao.png",
+            "url":"http://192.168.5.99/zentao/my/"
+        },
+        {
+            "title":"Nexus",
+            "icon":"nexus.png",
+            "url":"http://192.168.10.220:28080/nexus/index.html#welcome"
+        },
+        {
+            "title":"Gitlab",
+            "icon":"gitlab.png",
+            "url":"http://zn.gitlab.9ijx.com/"
+        },
+        {
+            "title":"RabbitMQ",
+            "icon":"rabbitmq.png",
+            "url":"http://192.168.5.40:15672/"
+        },
+        {
+            "title":"Github",
+            "icon":"github.png",
+            "url":"https://github.com/"
+        },
+        {
+            "title":"Maven",
+            "icon":"maven.png",
+            "url":"http://mvnrepository.com/tags/maven"
+        }
+    ],
+    "front":[
+        {
+            "title":"runjs",
+            "icon":"runjs.png",
+            "url":"http://runjs.cn/code"
+        },
+        {
+            "title":"JSON",
+            "icon":"",
+            "icon-text":"JSON",
+            "url":"http://runjs.cn/code"
+        },
+        {
+            "title":"Photoshop",
+            "icon":"photoshop.png",
+            "url":"http://www.uupoop.com"
+        }
+    ],
+    "technology":[
+        {
+            "title":"InfoQ",
+            "icon":"infoq.png",
+            "url":"http://www.infoq.com/cn/"
+        },
+        {
+            "title":"CSDN",
+            "icon":"csdn.png",
+            "url":"http://www.csdn.net/"
+        }
+    ],
+    "other":[
+        {
+            "title":"UML作图",
+            "icon":"uml.png",
+            "url":"https://www.processon.com/"
+        }
+    ]
 }
