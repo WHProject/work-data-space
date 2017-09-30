@@ -6,6 +6,6 @@ public class Test {
 		Calendar c = Calendar.getInstance();
         c.setTime(new Date());
         c.add(1, 10);
-        System.out.println(c.getTime());  
+        System.out.println(StatementStatusType.valueOf("FINANCE_REJECT")==StatementStatusType.FINANCE_REJECT);  
 	}
 }
