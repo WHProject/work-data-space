@@ -118,6 +118,12 @@
             "title":"UML作图",
             "icon":"uml.png",
             "url":"https://www.processon.com/"
+        },
+        {
+            "title":"在线开发工具",
+            "icon":"",
+            "icon-text":"TOOL",
+            "url":"http://web.chacuo.net/"
         }
     ]
 }
