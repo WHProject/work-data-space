@@ -12,7 +12,6 @@ Sub Main
 
 	tab1.Activate
 
-
 	If tab1.Session.Connected = True Then
 		tab1.Screen.Send "10.76" & Chr(13)
 		tab1.Screen.WaitForString "[zhangyang@"
