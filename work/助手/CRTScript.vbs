@@ -18,6 +18,7 @@ Sub Main
 		tab1.Screen.Send "tail -n 100 /log/web/service/ZNTG-APP_runtime_info.log" & Chr(13)
 	End If
 
+
 	tab2.Activate
 
 	If tab2.Session.Connected = True Then
