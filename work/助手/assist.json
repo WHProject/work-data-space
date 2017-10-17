@@ -14,6 +14,11 @@
             "title":"待办日程",
             "icon":"schedule.png",
             "url":"https://dida365.com/#p/59e4506be4b0e5eb1cd9fec7/tasks"
+        },
+        {
+            "title":"助手",
+            "icon":"assistant.png",
+            "url":"http://127.0.0.1:9898/assistant-web/"
         }
     ],
     "back":[
