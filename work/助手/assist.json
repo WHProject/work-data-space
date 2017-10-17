@@ -9,6 +9,12 @@
             "title":"OA",
             "icon":"oa.png",
             "url":"http://oa.jxwmanage.com/login/Login.jsp"
+        },
+        {
+            "title":"待办日程",
+            "icon":"",
+            "icon-text":"日程",
+            "url":"https://dida365.com/#p/59e4506be4b0e5eb1cd9fec7/tasks"
         }
     ],
     "back":[
